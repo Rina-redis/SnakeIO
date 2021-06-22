@@ -1,5 +1,6 @@
 ﻿using SFML.Graphics;
 using SFML.System;
+using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -44,5 +45,17 @@ namespace SnakeIO
             window.DispatchEvents();
             window.Display();
         }
+        private void InitIcons()
+        {
+
+        }
+    }
+
+    public static class ObjectsTextureDirectory
+    {
+        public static string Food = @"\Content\apple.png";
+        public static string SnakePart = @"\Content\snake_part.png";
+        public static string SnakeHead = @"\Content\snake_head.png";
+
     }
 }
