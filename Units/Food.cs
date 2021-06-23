@@ -8,7 +8,6 @@ namespace SnakeIO
     {
         public Food()
         {
-
             SetTexture(ObjectsTextureDirectory.Food);
         }
     }

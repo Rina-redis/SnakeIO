@@ -1,15 +1,18 @@
 ﻿using SFML.Graphics;
 using SFML.Window;
+using SnakeIO.Units;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace SnakeIO
 {
     class Game
     {
-        private UI gameUI = new UI();
+        public UI gameUI = new UI();
+        private InputManager inputManager = new InputManager();
         Snake snake = new Snake();
-        SnakePart snakePart = new SnakePart();
+ 
         public void Start()
         {
             SetupGame();
@@ -25,22 +28,26 @@ namespace SnakeIO
         }
         private void SetupGame()
         {
+           // Thread uiThread = new Thread(gameUI.Start);
+          //  uiThread.Start();
             gameUI.Init();
-            
+            ConnectEvents();
+           
+          //  gameUI.snaketemp = snake.sprite;
+            // gameUI.drawable.Add(snake.sprite);
 
         }
 
         private void LogicPart()
-        {
-           
+        {          
+            snake.Update();
+            snake.Move(inputManager.GetDirection());          
         }
         private void UiPart()
         {
             gameUI.DrawObject(snake.sprite);
-            gameUI.DrawObject(snakePart.sprite);
-            //   gameUI.ClearWindow();
-
-            //  DrawAllObjects();
+            gameUI.ClearWindow();
+           
             gameUI.Dispatch();
         }
 
@@ -50,9 +57,7 @@ namespace SnakeIO
         }
 
         private void ConnectEvents()
-        {
-            gameUI.window.KeyPressed += OnKeyPressed; //kak to po ploho...
-          //  gameUI.window.MouseMoved += heroController.MouseMoved;
+        {         
             gameUI.window.Closed += WindowClosed;
         }
 
@@ -75,12 +80,11 @@ namespace SnakeIO
 
         private bool CanPlay()
         {
-
             return true;
         }
         private void DrawAllObjects()
         {
-
+           
         }
     }
   

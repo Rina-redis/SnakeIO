@@ -11,14 +11,26 @@ namespace SnakeIO
     {
         private Font font;
         public RenderWindow window;
+        public List<Drawable> drawable = new List<Drawable>();
+        public Sprite snaketemp;
+        private Clock clock = new Clock();
 
         public void DrawObject(Drawable shape)
         {
-            window.Draw(shape);
+            if(shape!= null)
+            {
+                window.Draw(shape);
+            }
+           
         }
         public void ClearWindow()
         {
-            window.Clear(Color.White);
+            float time = clock.ElapsedTime.AsSeconds();
+            if (time > 0.001f)
+            {
+                window.Clear(Color.Black);
+                clock.Restart();
+            }         
         }
         public void Init()
         {
@@ -45,9 +57,21 @@ namespace SnakeIO
             window.DispatchEvents();
             window.Display();
         }
-        private void InitIcons()
+        public void SetObjectsToDraw(List<Drawable> objectsToDraw)
         {
-
+            
+        }
+        public void Start()
+        {
+            Init();
+            while (true)
+            {
+                //for(int i = 1; i<= drawable.Count; i++)
+                // {
+                //     DrawObject(drawable[i-1]);
+                // }      
+                DrawObject(snaketemp);
+            }
         }
     }
 
@@ -55,7 +79,7 @@ namespace SnakeIO
     {
         public static string Food = @"\Content\apple.png";
         public static string SnakePart = @"\Content\snake_part.png";
-        public static string SnakeHead = @"\Content\snake_head.png";
+        public static string SnakeHead = @"\Content\snake_head_list.png";
 
     }
 }

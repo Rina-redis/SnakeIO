@@ -1,6 +1,7 @@
 ﻿using SFML.Window;
 using SFML.Graphics;
 using System;
+using System.Threading;
 
 namespace SnakeIO
 {
@@ -9,14 +10,10 @@ namespace SnakeIO
         static void Main(string[] args)
         {
             Game game = new Game();
+           
             game.Start();
         }
-
-        static void WindowClosed(object sender, EventArgs e)
-        {
-            RenderWindow w = (RenderWindow)sender;
-            w.Close();
-        }
+    
     }
 }
 
