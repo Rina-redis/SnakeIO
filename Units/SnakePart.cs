@@ -7,10 +7,15 @@ namespace SnakeIO
 {
     class SnakePart : Actor
     {
+        private Vector2f directionToMove;
         public SnakePart()
         {
             SetTexture(ObjectsTextureDirectory.SnakePart);
-            sprite.Position = new Vector2f(300, 300);
+            sprite.Position = new Vector2f(0, 0);
+        }
+        public void Update()
+        {
+            MoveToPoint(directionToMove);
         }
     }
 }

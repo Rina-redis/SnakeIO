@@ -11,8 +11,7 @@ namespace SnakeIO
     {
         private Font font;
         public RenderWindow window;
-        public List<Drawable> drawable = new List<Drawable>();
-        public Sprite snaketemp;
+        public List<Sprite> drawable = new List<Sprite>();
         private Clock clock = new Clock();
 
         public void DrawObject(Drawable shape)
@@ -26,7 +25,7 @@ namespace SnakeIO
         public void ClearWindow()
         {
             float time = clock.ElapsedTime.AsSeconds();
-            if (time > 0.001f)
+            if (time > 0.01f)
             {
                 window.Clear(Color.Black);
                 clock.Restart();
@@ -40,7 +39,7 @@ namespace SnakeIO
         private RenderWindow SetupRenderWindow()
         {
             RenderWindow window = new RenderWindow(new VideoMode(Constants.windowWidth, Constants.windowHeight), "Game window");
-            window.SetFramerateLimit(1000);
+            window.SetFramerateLimit(500);
 
             return window;
         }
@@ -57,20 +56,19 @@ namespace SnakeIO
             window.DispatchEvents();
             window.Display();
         }
-        public void SetObjectsToDraw(List<Drawable> objectsToDraw)
+        public void SetObjectsToDraw(List<Sprite> objectsToDraw)
         {
-            
+            drawable = objectsToDraw;
         }
         public void Start()
         {
-            Init();
+            
             while (true)
             {
-                //for(int i = 1; i<= drawable.Count; i++)
-                // {
-                //     DrawObject(drawable[i-1]);
-                // }      
-                DrawObject(snaketemp);
+                foreach(Sprite sprite in drawable)
+                {
+                    DrawObject(sprite);
+                }
             }
         }
     }

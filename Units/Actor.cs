@@ -11,7 +11,7 @@ namespace SnakeIO
     {
         public IntRect size = new IntRect(0, 0, 64, 64);
         public Sprite sprite;
-        public float speed = 0.1f;
+        public float speed = 0.001f;
         public Actor()
         {
 
@@ -21,13 +21,26 @@ namespace SnakeIO
             Texture texture = new Texture(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + path);
             sprite = new Sprite(texture, size);
         }
-        public void Move(Vector2f direction)
+        public void MoveToPoint(Vector2f direction)
         {
             if (direction != new Vector2f(0, 0))
-            {              
-                sprite.Position += direction * speed;
-                // directionXAbs and directionYAbs in the formule makes x or y 0 if it is 0.If vector is 0,1 ,then x for moving will be 0.
+            {
+                float distance = MathHelper.DistanceToPoint(GetCenter(), direction);
+                //if (distance > 10)
+                //{
+                //    speed = 0.1f;
+                //}
+                Vector2f directionTemp = new Vector2f( (direction.X - GetCenter().X)/distance,
+                                                       (direction.Y - GetCenter().Y)/ distance);
+                Vector2f newPos = sprite.Position;
+                newPos += directionTemp;
+                sprite.Position = newPos;
             }
+            
+        }
+        public void MoveByVector(Vector2f direction)
+        {
+            sprite.Position += direction * 0.1f;
         }
         public Vector2f GetCenter()
         {

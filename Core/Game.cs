@@ -2,8 +2,7 @@
 using SFML.Window;
 using SnakeIO.Units;
 using System;
-using System.Collections.Generic;
-using System.Threading;
+
 
 namespace SnakeIO
 {
@@ -28,14 +27,12 @@ namespace SnakeIO
         }
         private void SetupGame()
         {
-           // Thread uiThread = new Thread(gameUI.Start);
-          //  uiThread.Start();
             gameUI.Init();
+           // gameUI.SetObjectsToDraw(snake.sprites);
+           // Thread uiThread = new Thread(gameUI.Start);
+           // uiThread.Start();
+          
             ConnectEvents();
-           
-          //  gameUI.snaketemp = snake.sprite;
-            // gameUI.drawable.Add(snake.sprite);
-
         }
 
         private void LogicPart()
@@ -45,7 +42,7 @@ namespace SnakeIO
         }
         private void UiPart()
         {
-            gameUI.DrawObject(snake.sprite);
+            DrawAllObjects();
             gameUI.ClearWindow();
            
             gameUI.Dispatch();
@@ -61,17 +58,6 @@ namespace SnakeIO
             gameUI.window.Closed += WindowClosed;
         }
 
-        private void OnKeyPressed(object sender, KeyEventArgs e)
-        {
-            if (e.Code == Keyboard.Key.F)
-            {
-
-            }
-            while (Keyboard.IsKeyPressed(Keyboard.Key.Space))
-            {
-
-            }
-        }
         private static void WindowClosed(object sender, EventArgs e)
         {
             RenderWindow w = (RenderWindow)sender;
@@ -84,7 +70,10 @@ namespace SnakeIO
         }
         private void DrawAllObjects()
         {
-           
+            foreach (Sprite sprite in snake.sprites)
+            {
+                gameUI.DrawObject(sprite);
+            }
         }
     }
   
