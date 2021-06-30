@@ -39,7 +39,7 @@ namespace SnakeIO
         private RenderWindow SetupRenderWindow()
         {
             RenderWindow window = new RenderWindow(new VideoMode(Constants.windowWidth, Constants.windowHeight), "Game window");
-            window.SetFramerateLimit(500);
+           // window.SetFramerateLimit(500);
 
             return window;
         }
@@ -61,8 +61,7 @@ namespace SnakeIO
             drawable = objectsToDraw;
         }
         public void Start()
-        {
-            
+        {          
             while (true)
             {
                 foreach(Sprite sprite in drawable)

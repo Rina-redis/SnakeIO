@@ -2,7 +2,7 @@
 using SFML.Window;
 using SnakeIO.Units;
 using System;
-
+using System.Threading;
 
 namespace SnakeIO
 {
@@ -28,9 +28,9 @@ namespace SnakeIO
         private void SetupGame()
         {
             gameUI.Init();
-           // gameUI.SetObjectsToDraw(snake.sprites);
-           // Thread uiThread = new Thread(gameUI.Start);
-           // uiThread.Start();
+            gameUI.SetObjectsToDraw(snake.sprites);
+            Thread uiThread = new Thread(gameUI.Start);
+            uiThread.Start();
           
             ConnectEvents();
         }

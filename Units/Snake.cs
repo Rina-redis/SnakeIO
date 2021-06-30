@@ -41,8 +41,7 @@ namespace SnakeIO
         }
         public void Update()
         {
-        
-            
+            head.Update();           
         }
         private void CreateBody()
         {
